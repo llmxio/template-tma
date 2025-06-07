@@ -84,13 +84,6 @@ The app integrates with Telegram's Mini App platform:
 - Platform-specific optimizations
 - Development environment mocking
 
-## 🎵 Music Features
-
-- Radio streaming interface
-- Band and artist profiles
-- Music track details
-- Integration with MusicBrainz API
-
 ## 🚢 Deployment
 
 Deploy to Cloudflare Workers for global edge distribution:
