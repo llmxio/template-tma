@@ -34,10 +34,10 @@ export function Profile() {
   } = wallet;
 
   return (
-    <List>
+    <>
       {"imageUrl" in wallet && (
         <>
-          <Section>
+          <Section header="Wallet">
             <Cell
               before={
                 <Avatar
@@ -85,6 +85,6 @@ export function Profile() {
           },
         ]}
       />
-    </List>
+    </>
   );
 }
