@@ -7,6 +7,7 @@
 .navigator__tabbar {
   width: 100%;
   display: flex;
+  padding-bottom: 4px;
 }
 
 .navigator__item {
@@ -14,11 +15,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 0;
 }
 
+/*
 .navigator__item--active {
-  /* Additional styles for active tab if needed */
+   Additional styles for active tab if needed
 }
+*/
 
 .navigator__link {
   width: 100%;

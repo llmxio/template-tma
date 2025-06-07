@@ -4,6 +4,8 @@ import { useTonWallet } from "@tonconnect/ui-react";
 import {
   Icon28Music,
   Icon28MusicOutline,
+  Icon20Stars,
+  Icon20StarsFilled,
   Icon28User,
   Icon28UserOutline,
 } from "@vkontakte/icons";
@@ -28,7 +30,7 @@ export function Navigator() {
   const activeTab = getActiveTab(location.pathname);
 
   return (
-    <div className={block()}>
+    <>
       <Tabbar className={elem("tabbar")}>
         <Link to={getTabRoute(0)} viewTransition className={elem("link")}>
           <Tabbar.Item
@@ -37,7 +39,11 @@ export function Navigator() {
             className={elem("item", { active: activeTab === 0 })}
           >
             <Navigation>
-              {activeTab === 0 ? <Icon28Music /> : <Icon28MusicOutline />}
+              {activeTab === 0 ? (
+                <Icon20StarsFilled width={28} height={28} />
+              ) : (
+                <Icon20Stars width={28} height={28} />
+              )}
             </Navigation>
           </Tabbar.Item>
         </Link>
@@ -53,6 +59,6 @@ export function Navigator() {
           </Tabbar.Item>
         </Link>
       </Tabbar>
-    </div>
+    </>
   );
 }
