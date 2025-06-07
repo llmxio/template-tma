@@ -14,7 +14,6 @@ A modern Telegram Mini App built with React Router v7 and deployed on Cloudflare
 - **Cloudflare Workers** deployment with edge computing
 - **Tailwind CSS v4** for modern styling
 - **TypeScript** with strict configuration
-- **Music Integration** with MusicBrainz API
 
 ## 🛠️ Tech Stack
 
@@ -28,7 +27,7 @@ A modern Telegram Mini App built with React Router v7 and deployed on Cloudflare
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20+
 - npm or yarn
 - Cloudflare account (for deployment)
 
