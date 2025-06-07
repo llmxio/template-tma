@@ -1,5 +1,13 @@
 import { openLink } from "@telegram-apps/sdk-react";
-import { Avatar, Cell, List, Placeholder, Section, Text, Title } from "tmaui";
+import {
+  Avatar,
+  Cell,
+  Skeleton,
+  Placeholder,
+  Section,
+  Text,
+  Title,
+} from "tmaui";
 import { TonConnectButton, useTonWallet } from "@tonconnect/ui-react";
 import { DisplayData } from "@/components/DisplayData";
 import { bem } from "@/css/bem";
@@ -12,19 +20,21 @@ export function Profile() {
 
   if (!wallet) {
     return (
-      <Placeholder
-        className={e("placeholder")}
-        header="TON Connect"
-        description={
-          <>
-            <Text>
-              To display the data related to the TON Connect, it is required to
-              connect your wallet
-            </Text>
-            <TonConnectButton className={e("button")} />
-          </>
-        }
-      />
+      <>
+        <Placeholder
+          className={e("placeholder")}
+          header="TON Connect"
+          description={
+            <>
+              <Text>
+                To display the data related to the TON Connect, it is required
+                to connect your wallet
+              </Text>
+              <TonConnectButton className={e("button")} />
+            </>
+          }
+        />
+      </>
     );
   }
 
@@ -37,7 +47,7 @@ export function Profile() {
     <>
       {"imageUrl" in wallet && (
         <>
-          <Section header="Wallet">
+          <Section>
             <Cell
               before={
                 <Avatar
