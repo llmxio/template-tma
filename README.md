@@ -1,6 +1,6 @@
 # Telegram Mini App - Cloudflare Worker Template
 
-A modern Telegram Mini App built with React Router v7 and deployed on Cloudflare Workers.
+A modern Telegram Mini App built with React Router v7 and deployed on Cloudflare Workers. TON Blockchain ready with integrated wallet connections and cryptocurrency interactions.
 
 🤖 **Try the live example**: [@tma_cfbot](https://t.me/tma_cfbot)
 
