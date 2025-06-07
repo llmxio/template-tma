@@ -1,0 +1,39 @@
+{
+  "name": "template-tma",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "react-router build",
+    "deploy": "npm run build && wrangler deploy",
+    "dev": "react-router dev",
+    "preview": "npm run build && vite preview",
+    "typegen": "wrangler types && react-router typegen",
+    "typecheck": "npm run typegen && tsc -b"
+  },
+  "dependencies": {
+    "@telegram-apps/sdk-react": "^3.3.0",
+    "@tonconnect/ui-react": "^2.1.0",
+    "@vkontakte/icons": "^3.9.0",
+    "isbot": "^5.1.28",
+    "musicbrainz-api": "^0.25.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router": "^7.6.2",
+    "tmaui": "^2.1.11"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.5.0",
+    "@react-router/dev": "^7.6.2",
+    "@tailwindcss/vite": "^4.1.8",
+    "@types/node": "^22.15.30",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
+    "react-swipeable": "^7.0.2",
+    "tailwindcss": "^4.1.8",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vite-tsconfig-paths": "^5.1.4",
+    "wrangler": "^4.19.1"
+  }
+}
