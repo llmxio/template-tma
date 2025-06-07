@@ -57,19 +57,28 @@ npx wrangler deploy --dry-run
 
 ## 📁 Project Structure
 
-```
+```text
 app/
-├── routes/           # Page components
-├── layouts/          # Layout components
-├── types/           # TypeScript definitions
-├── utils/           # Utility functions
-├── main.ts          # Telegram SDK initialization
-└── root.tsx         # App root component
+├── assets/             # SVG assets (TON logos)
+├── components/         # Reusable UI components
+├── css/                # CSS utilities
+├── layouts/            # Layout components
+├── pages/              # Legacy page components
+├── routes/             # React Router v7 route files
+├── types/              # TypeScript type definitions
+├── utils/              # Utility functions
+├──
+├── app.css             # Global styles
+├── entry.server.tsx    # Server-side rendering entry
+├── main.ts             # Telegram SDK initialization
+├── mock.ts             # Development environment mocking
+├── root.tsx            # App root component
+└── routes.ts           # Route configuration
 
 workers/
-└── app.ts           # Cloudflare Worker entry point
+└── app.ts              # Cloudflare Worker entry point
 
-public/              # Static assets
+public/                 # Static assets
 ```
 
 ## 🔧 Configuration
