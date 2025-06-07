@@ -22,6 +22,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { Navigator } from "./components/Navigator";
 import { main } from "./main";
 import { mockEnv } from "./mock";
 
@@ -114,6 +115,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <TonConnectUIProvider {...tonConnectOptions}>
           <AppRoot appearance={isDark ? "dark" : "light"} platform={platform}>
             {children}
+            <Navigator />
           </AppRoot>
         </TonConnectUIProvider>
         <ScrollRestoration />

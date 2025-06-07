@@ -2,6 +2,10 @@
 
 A modern Telegram Mini App built with React Router v7 and deployed on Cloudflare Workers.
 
+🤖 **Try the live example**: [@tma_cfbot](https://t.me/tma_cfbot)
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/llmxio/template-tma)
+
 ## 🚀 Features
 
 - **React Router v7** with file-based routing and SSR
@@ -93,3 +97,10 @@ npm run deploy
 ```
 
 The app will be available at your Cloudflare Workers domain and can be integrated into Telegram bots.
+
+## 🙏 Credits
+
+This template builds upon the excellent work of:
+
+- [TMA React.js Template](https://github.com/Telegram-Mini-Apps/reactjs-template/) - Base foundation for Telegram Mini App development
+- [TMAUI](https://github.com/tophackr/tmaui) - Beautiful UI components for Telegram Mini Apps following native Telegram UI

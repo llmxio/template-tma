@@ -1,0 +1,27 @@
+/* Navigator component styles using BEM methodology */
+
+.navigator {
+  width: 100%;
+}
+
+.navigator__tabbar {
+  width: 100%;
+  display: flex;
+}
+
+.navigator__item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigator__item--active {
+  /* Additional styles for active tab if needed */
+}
+
+.navigator__link {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
