@@ -43,5 +43,5 @@ export async function clientLoader({ serverLoader }: Route.ClientLoaderArgs) {
 }
 
 export default function IndexRoute({ loaderData }: Route.ComponentProps) {
-  return <Index loaderData={loaderData} />;
+  return <Index />;
 }

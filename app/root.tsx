@@ -5,6 +5,7 @@ import { tonConnectOptions } from "./utils/ton-connect";
 import {
   isMiniAppDark,
   retrieveLaunchParams,
+  useLaunchParams,
   useSignal,
 } from "@telegram-apps/sdk-react";
 
@@ -37,15 +38,15 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-export const loader = async ({
-  request,
-  params,
-  context,
-}: Route.LoaderArgs) => {
-  console.log("root.loader()");
+// export const loader = async ({
+//   request,
+//   params,
+//   context,
+// }: Route.LoaderArgs) => {
+//   console.log("root.loader()");
 
-  return { message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE };
-};
+//   return { message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE };
+// };
 
 export async function clientLoader({
   request,
@@ -57,9 +58,9 @@ export async function clientLoader({
     await mockEnv();
 
     // Check if we're in browser environment before accessing Telegram SDK
-    if (typeof window === "undefined") {
-      return { lp: {} };
-    }
+    // if (typeof window === "undefined") {
+    //   return { lp: {} };
+    // }
 
     const launchParams = retrieveLaunchParams();
     const { tgWebAppPlatform: platform } = launchParams;
@@ -92,7 +93,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       const isDarkSignal = useSignal(isMiniAppDark);
       isDark = isDarkSignal || false;
 
-      const launchParams = retrieveLaunchParams();
+      const launchParams = useLaunchParams();
       platform = ["macos", "ios"].includes(launchParams.tgWebAppPlatform)
         ? "ios"
         : "base";
@@ -111,15 +112,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <TonConnectUIProvider {...tonConnectOptions}>
-          <AppRoot
-            appearance={isDark ? "dark" : "light"}
-            platform="base"
-            // platform={
-            //   ["macos", "ios"].includes(launchParams.tgWebAppPlatform)
-            //     ? "ios"
-            //     : "base"
-            // }
-          >
+          <AppRoot appearance={isDark ? "dark" : "light"} platform={platform}>
             {children}
           </AppRoot>
         </TonConnectUIProvider>

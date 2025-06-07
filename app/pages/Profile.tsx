@@ -1,6 +1,11 @@
 import { openLink } from "@telegram-apps/sdk-react";
 import { Avatar, Cell, List, Placeholder, Section, Text, Title } from "tmaui";
 import { TonConnectButton, useTonWallet } from "@tonconnect/ui-react";
+import { DisplayData } from "@/components/DisplayData";
+import { bem } from "@/css/bem";
+import "./Profile.css";
+
+const [, e] = bem("ton-connect-page");
 
 export function Profile() {
   const wallet = useTonWallet();
@@ -8,7 +13,7 @@ export function Profile() {
   if (!wallet) {
     return (
       <Placeholder
-        className=""
+        className={e("placeholder")}
         header="TON Connect"
         description={
           <>
@@ -16,7 +21,7 @@ export function Profile() {
               To display the data related to the TON Connect, it is required to
               connect your wallet
             </Text>
-            <TonConnectButton />
+            <TonConnectButton className={e("button")} />
           </>
         }
       />
@@ -35,7 +40,12 @@ export function Profile() {
           <Section>
             <Cell
               before={
-                <Avatar src={wallet.imageUrl} alt="Provider logo" size={48} />
+                <Avatar
+                  src={wallet.imageUrl}
+                  alt="Provider logo"
+                  width={60}
+                  height={60}
+                />
               }
               // after={<Navigation>About wallet</Navigation>}
               subtitle={wallet.appName}
@@ -47,43 +57,34 @@ export function Profile() {
               <Title level="3">{wallet.name}</Title>
             </Cell>
           </Section>
-          <TonConnectButton />
+          <TonConnectButton className={e("button-connected")} />
         </>
       )}
-      <Section header="Account">
-        <Cell subtitle="Address">
-          <Text>{address}</Text>
-        </Cell>
-        <Cell subtitle="Chain">
-          <Text>{chain}</Text>
-        </Cell>
-        <Cell subtitle="Public Key">
-          <Text>{publicKey}</Text>
-        </Cell>
-      </Section>
+      <DisplayData
+        header="Account"
+        rows={[
+          { title: "Address", value: address },
+          { title: "Chain", value: chain },
+          { title: "Public Key", value: publicKey },
+        ]}
+      />
 
-      <Section header="Device">
-        <Cell subtitle="App Name">
-          <Text>{appName}</Text>
-        </Cell>
-        <Cell subtitle="App Version">
-          <Text>{appVersion}</Text>
-        </Cell>
-        <Cell subtitle="Max Protocol Version">
-          <Text>{maxProtocolVersion.toString()}</Text>
-        </Cell>
-        <Cell subtitle="Platform">
-          <Text>{platform}</Text>
-        </Cell>
-        <Cell subtitle="Features">
-          <Text>
-            {features
+      <DisplayData
+        header="Device"
+        rows={[
+          { title: "App Name", value: appName },
+          { title: "App Version", value: appVersion },
+          { title: "Max Protocol Version", value: maxProtocolVersion },
+          { title: "Platform", value: platform },
+          {
+            title: "Features",
+            value: features
               .map((f) => (typeof f === "object" ? f.name : undefined))
               .filter((v) => v)
-              .join(", ")}
-          </Text>
-        </Cell>
-      </Section>
+              .join(", "),
+          },
+        ]}
+      />
     </List>
   );
 }

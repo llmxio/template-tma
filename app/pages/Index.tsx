@@ -1,64 +1,83 @@
-import {
-  Text,
-  Title,
-  Card,
-  Cell,
-  Image,
-  Avatar,
-  Button,
-  Placeholder,
-} from "tmaui";
+import { DisplayData } from "@/components/DisplayData";
+import type { DisplayDataRow } from "@/components/DisplayData/DisplayData";
+import { useLaunchParams } from "@telegram-apps/sdk-react";
+import "./Index.css";
 
-// Import TON logo
-import tonLogoUrl from "../assets/ton.svg";
+export function Index() {
+  const launchParams = useLaunchParams() as any; // Type assertion needed due to Telegram SDK typing
+  // Transform launchParams into DisplayDataRow format
+  const rows: DisplayDataRow[] = [];
 
-interface IndexPageProps {
-  loaderData?: {
-    message?: string;
-    tgWebAppPlatform?: string;
-    tgWebAppColorScheme?: string;
-  };
-}
+  if (launchParams && Object.keys(launchParams).length > 0) {
+    // Add Telegram-specific data
+    if ("tgWebAppPlatform" in launchParams && launchParams.tgWebAppPlatform) {
+      rows.push({
+        title: "Platform",
+        value: launchParams.tgWebAppPlatform,
+      });
+    }
 
-export function Index({ loaderData }: IndexPageProps) {
-  console.log("Index page data:", loaderData);
+    if (
+      "tgWebAppColorScheme" in launchParams &&
+      launchParams.tgWebAppColorScheme
+    ) {
+      rows.push({
+        title: "Color Scheme",
+        value: launchParams.tgWebAppColorScheme,
+      });
+    }
 
-  return (
-    <>
-      <Placeholder
-        header={
-          <Avatar size={96}>
-            <Image src={tonLogoUrl} alt="TON Logo" />
-          </Avatar>
+    if ("tgWebAppVersion" in launchParams && launchParams.tgWebAppVersion) {
+      rows.push({
+        title: "WebApp Version",
+        value: launchParams.tgWebAppVersion,
+      });
+    }
+
+    if (
+      "tgWebAppStartParam" in launchParams &&
+      launchParams.tgWebAppStartParam
+    ) {
+      rows.push({
+        title: "Start Parameter",
+        value: launchParams.tgWebAppStartParam,
+      });
+    }
+
+    // Add theme parameters if available
+    if (
+      "tgWebAppThemeParams" in launchParams &&
+      launchParams.tgWebAppThemeParams
+    ) {
+      Object.entries(launchParams.tgWebAppThemeParams).forEach(
+        ([key, value]) => {
+          rows.push({
+            title: `Theme: ${key}`,
+            value: String(value),
+          });
         }
-        description="Welcome to your Telegram Mini App template! This is built with React Router v7, Vite, and deployed on Cloudflare Workers."
-      >
-        <Title weight="2">TMA Template</Title>
-      </Placeholder>
+      );
+    }
 
-      <Card>
-        <Cell
-          before={
-            <Avatar size={40}>
-              <Image src={tonLogoUrl} alt="TON" />
-            </Avatar>
-          }
-          subtitle="Environment message"
-        >
-          <Text>{loaderData?.message}</Text>
-        </Cell>
-      </Card>
+    // Add any other launch parameters
+    Object.entries(launchParams).forEach(([key, value]) => {
+      if (!key.startsWith("tgWebApp") && value !== undefined) {
+        rows.push({
+          title: key,
+          value:
+            typeof value === "object" ? JSON.stringify(value) : String(value),
+        });
+      }
+    });
+  }
 
-      <Card>
-        <Cell subtitle="Launch parameters">
-          <Text>Platform: {loaderData?.tgWebAppPlatform || "Unknown"}</Text>
-        </Cell>
-        <Cell subtitle="Theme">
-          <Text>
-            Color Scheme: {loaderData?.tgWebAppColorScheme || "Unknown"}
-          </Text>
-        </Cell>
-      </Card>
-    </>
-  );
+  // If no data, show a message
+  if (rows.length === 0) {
+    rows.push({
+      title: "Status",
+      value: "No launch data available",
+    });
+  }
+
+  return <DisplayData header="TMA Template - Launch Parameters" rows={rows} />;
 }
