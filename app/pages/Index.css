@@ -1,0 +1,13 @@
+.index-page__placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.index-page__button {
+  background-color: var(--tg-theme-button-color, #007aff) !important;
+  margin: 16px auto 0;
+}
