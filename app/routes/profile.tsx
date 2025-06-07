@@ -1,9 +1,6 @@
 import type { Route } from "./+types/profile";
 import { Profile } from "@/pages/Profile";
-import {
-  retrieveLaunchParams,
-  useLaunchParams,
-} from "@telegram-apps/sdk-react";
+import { retrieveLaunchParams } from "@telegram-apps/sdk-react";
 
 export function meta({}: Route.MetaArgs) {
   return [
