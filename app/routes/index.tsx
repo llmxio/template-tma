@@ -23,7 +23,9 @@ export async function loader({ context }: Route.LoaderArgs) {
   }
 }
 
-export const clientLoader = async ({ serverLoader }: Route.ClientLoaderArgs) => {
+export const clientLoader = async ({
+  serverLoader,
+}: Route.ClientLoaderArgs) => {
   try {
     const serverParams = await serverLoader();
     const launchParams = retrieveLaunchParams();
