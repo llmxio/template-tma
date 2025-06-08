@@ -4,18 +4,6 @@
   width: 100%;
 }
 
-/* .navigator__tabbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  display: flex;
-  padding-bottom: 4px;
-  background: var(--tg-theme-bg-color, white);
-  z-index: 1000;
-} */
-
 .navigator__item {
   flex: 1;
   display: flex;
@@ -23,12 +11,6 @@
   align-items: center;
   padding-bottom: 0;
 }
-
-/*
-.navigator__item--active {
-   Additional styles for active tab if needed
-}
-*/
 
 .navigator__link {
   width: 100%;
