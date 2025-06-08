@@ -2,7 +2,7 @@ import { openLink } from "@telegram-apps/sdk-react";
 import {
   Avatar,
   Cell,
-  Skeleton,
+  Divider,
   Placeholder,
   Section,
   Text,
@@ -64,24 +64,22 @@ export function Profile() {
                 e.preventDefault();
                 openLink(wallet.aboutUrl);
               }}
+              after={<TonConnectButton className={e("button-connected")} />}
             >
               <Title level="3">{wallet.name}</Title>
             </Cell>
           </Section>
-          <TonConnectButton className={e("button-connected")} />
         </>
       )}
       <DisplayData
-        header="Account"
         rows={[
           { title: "Address", value: address },
           { title: "Chain", value: chain },
           { title: "Public Key", value: publicKey },
         ]}
       />
-
+      <Divider />
       <DisplayData
-        header="Device"
         rows={[
           { title: "App Name", value: appName },
           { title: "App Version", value: appVersion },
@@ -96,63 +94,6 @@ export function Profile() {
           },
         ]}
       />
-
-      {/* Test section for slide transitions */}
-      <div
-        style={{
-          padding: "20px",
-          borderTop:
-            "1px solid var(--tg-theme-section-separator-color, #e5e5e5)",
-          marginTop: "20px",
-        }}
-      >
-        <h3 style={{ marginBottom: "15px" }}>🎵 Your Music</h3>
-        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          <Link
-            to="/track/Pink%20Floyd/Wish%20You%20Were%20Here"
-            viewTransition
-            style={{
-              padding: "12px 16px",
-              backgroundColor: "var(--tg-theme-button-color, #3390ec)",
-              color: "var(--tg-theme-button-text-color, white)",
-              borderRadius: "8px",
-              textDecoration: "none",
-              textAlign: "center",
-              display: "block",
-            }}
-          >
-            🌙 Play "Wish You Were Here" by Pink Floyd
-          </Link>
-
-          <Link
-            to="/track/Radiohead/Paranoid%20Android"
-            viewTransition
-            style={{
-              padding: "12px 16px",
-              backgroundColor: "var(--tg-theme-button-color, #3390ec)",
-              color: "var(--tg-theme-button-text-color, white)",
-              borderRadius: "8px",
-              textDecoration: "none",
-              textAlign: "center",
-              display: "block",
-            }}
-          >
-            🎭 Play "Paranoid Android" by Radiohead
-          </Link>
-        </div>
-
-        <p
-          style={{
-            marginTop: "15px",
-            fontSize: "14px",
-            opacity: 0.7,
-            textAlign: "center",
-          }}
-        >
-          Swipe left/right to navigate between tabs, or tap links to test page
-          transitions!
-        </p>
-      </div>
     </>
   );
 }

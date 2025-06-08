@@ -30,7 +30,7 @@ export function Navigator() {
       <Tabbar className={elem("tabbar")}>
         <Link to={getTabRoute(0)} viewTransition className={elem("link")}>
           <Tabbar.Item
-            text="Main"
+            text="Index"
             selected={activeTab === 0}
             className={elem("item", { active: activeTab === 0 })}
           >

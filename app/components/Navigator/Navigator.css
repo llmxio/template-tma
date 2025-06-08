@@ -10,6 +10,12 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 0;
+  color: white;
+}
+
+.navigator__item svg {
+  color: white;
+  fill: white;
 }
 
 .navigator__link {

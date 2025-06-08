@@ -16,7 +16,7 @@
 }
 
 /* Style TonConnectButton to match telegram-ui Button component */
-/* .ton-connect-page__button [data-tc-connect-button-root] {
+.ton-connect-page__button [data-tc-connect-button-root] {
   background-color: var(--tg-theme-button-color, #007aff) !important;
   color: var(--tg-theme-button-text-color, #ffffff) !important;
   border: none !important;
@@ -33,9 +33,9 @@
   gap: 8px !important;
   min-height: 32px !important;
   box-sizing: border-box !important;
-} */
+}
 
-/* .ton-connect-page__button [data-tc-connect-button-root]:hover {
+.ton-connect-page__button [data-tc-connect-button-root]:hover {
   opacity: 0.88 !important;
 }
 
@@ -60,4 +60,4 @@
   gap: 8px !important;
   min-height: 32px !important;
   box-sizing: border-box !important;
-} */
+}
