@@ -13,7 +13,7 @@ export default [
     route("*", "routes/notfound.tsx"),
   ]),
 
-  // layout("layouts/RootWithBack.tsx", [
-  //   route("track/:trackArtist/:trackTitle", "routes/track.tsx"),
-  // ]),
+  layout("layouts/RootWithBack.tsx", [
+    route("track/:trackArtist/:trackTitle", "routes/track.tsx"),
+  ]),
 ] satisfies RouteConfig;

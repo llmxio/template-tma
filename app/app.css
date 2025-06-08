@@ -2,4 +2,107 @@ body {
   background: var(--tg-theme-secondary-bg-color, white);
   padding: 0;
   margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll during transitions */
+  padding-bottom: 80px; /* Add space for fixed tabbar */
+}
+
+/* Page content container should have view transition name */
+.page-content {
+  view-transition-name: page-content;
+  width: 100%;
+  height: calc(100vh - 80px); /* Account for tabbar height */
+  overflow-y: auto;
+}
+
+/* View Transition Slide Animations */
+@keyframes slide-out-left {
+  from {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0.8;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0.8;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+/* Default slide transition (forward navigation) - target page content only */
+::view-transition-old(page-content) {
+  animation: 0.25s cubic-bezier(0.4, 0, 0.2, 1) both slide-out-left;
+}
+
+::view-transition-new(page-content) {
+  animation: 0.25s cubic-bezier(0.4, 0, 0.2, 1) both slide-in-right;
+}
+
+/* Custom slide direction classes for different navigation types - target page content only */
+.slide-direction-forward ::view-transition-old(page-content) {
+  animation: 0.25s cubic-bezier(0.4, 0, 0.2, 1) both slide-out-right;
+}
+
+.slide-direction-forward ::view-transition-new(page-content) {
+  animation: 0.25s cubic-bezier(0.4, 0, 0.2, 1) both slide-in-left;
+}
+
+.slide-direction-backward ::view-transition-old(page-content) {
+  animation: 0.25s cubic-bezier(0.4, 0, 0.2, 1) both slide-out-left;
+}
+
+.slide-direction-backward ::view-transition-new(page-content) {
+  animation: 0.25s cubic-bezier(0.4, 0, 0.2, 1) both slide-in-right;
+}
+
+/* Ensure smooth transitions without overlap issues */
+::view-transition-group(page-content) {
+  animation-duration: 0.25s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Make sure the view transition container takes full viewport width but only page content height */
+::view-transition-image-pair(page-content) {
+  width: 100vw;
+  height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+/* Ensure proper layering during transitions */
+::view-transition-old(page-content),
+::view-transition-new(page-content) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
