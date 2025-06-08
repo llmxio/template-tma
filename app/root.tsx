@@ -49,11 +49,11 @@ export const links: Route.LinksFunction = () => [
 //   return { message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE };
 // };
 
-export async function clientLoader({
+export const clientLoader = async ({
   request,
   serverLoader,
   params,
-}: Route.ClientLoaderArgs) {
+}: Route.ClientLoaderArgs) => {
   try {
     console.log("root.clientLoader()");
     await mockEnv();
@@ -82,7 +82,7 @@ export async function clientLoader({
     console.error("root", error);
   }
   return { lp: {} };
-}
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   // Only access Telegram SDK on client side
