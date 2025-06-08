@@ -23,13 +23,20 @@ This is a **Telegram Mini App (TMA)** built with **React Router v7**, deployed o
   - `layouts/` - Layout components (RootNoBack.tsx, RootWithBack.tsx)
   - `types/` - TypeScript type definitions (apiTypes.ts, appTypes.ts)
   - `utils/` - Utility functions (telegram-env.ts, ton-connect.ts, public-url.ts)
+  - `components/` - Reusable UI components (DisplayData, Link, Navigator, RGB, SwipeNavigator)
+  - `hooks/` - Custom React hooks (useSwipeNavigation)
+  - `css/` - CSS utility functions (bem.ts, classnames.ts)
+  - `assets/` - Static assets (SVG icons)
+  - `pages/` - Page-specific components (Index, Profile, NotFound)
+  - `routes/` - Route handler components
   - `routes.ts` - Route configuration with nested layouts
   - `main.ts` - Telegram SDK initialization
   - `mock.ts` - Development environment mocking
   - `root.tsx` - App root component
   - `entry.server.tsx` - SSR entry point
+  - `app.css` - Global styles and view transitions
 - `workers/` - Cloudflare Worker entry point (app.ts)
-- `public/` - Static assets (favicon.ico, logobot.png)
+- `public/` - Static assets (favicon.ico)
 
 ### Important Configuration Files
 

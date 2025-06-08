@@ -5,6 +5,7 @@ export const tabRoutes = ["/", "/profile"];
 export function getActiveTab(pathname: string): number {
   if (pathname === "/" || pathname.startsWith("/index")) return 0;
   if (pathname.startsWith("/profile")) return 1;
+  // For non-tab routes like track, return -1
   return -1;
 }
 
