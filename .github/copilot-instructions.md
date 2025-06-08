@@ -23,13 +23,20 @@ This is a **Telegram Mini App (TMA)** built with **React Router v7**, deployed o
   - `layouts/` - Layout components (RootNoBack.tsx, RootWithBack.tsx)
   - `types/` - TypeScript type definitions (apiTypes.ts, appTypes.ts)
   - `utils/` - Utility functions (telegram-env.ts, ton-connect.ts, public-url.ts)
+  - `components/` - Reusable UI components (DisplayData, Link, Navigator, RGB, SwipeNavigator)
+  - `hooks/` - Custom React hooks (useSwipeNavigation)
+  - `css/` - CSS utility functions (bem.ts, classnames.ts)
+  - `assets/` - Static assets (SVG icons)
+  - `pages/` - Page-specific components (Index, Profile, NotFound)
+  - `routes/` - Route handler components
   - `routes.ts` - Route configuration with nested layouts
   - `main.ts` - Telegram SDK initialization
   - `mock.ts` - Development environment mocking
   - `root.tsx` - App root component
   - `entry.server.tsx` - SSR entry point
+  - `app.css` - Global styles and view transitions
 - `workers/` - Cloudflare Worker entry point (app.ts)
-- `public/` - Static assets (favicon.ico, logobot.png)
+- `public/` - Static assets (favicon.ico)
 
 ### Important Configuration Files
 
@@ -104,7 +111,6 @@ This is a **Telegram Mini App (TMA)** built with **React Router v7**, deployed o
 
 - `@telegram-apps/sdk-react` - Telegram SDK
 - `@tonconnect/ui-react` - TON Connect integration
-- `musicbrainz-api` - Music metadata API
 - `react-swipeable` - Touch gesture support
 - `tmaui` - Telegram Mini App UI components
 
@@ -118,6 +124,8 @@ This is a **Telegram Mini App (TMA)** built with **React Router v7**, deployed o
 4. Use Tailwind classes for styling
 5. Handle back button navigation appropriately
 6. Consider theme switching (light/dark mode)
+7. **Avoid HTML tags except `div` and `span`** - use tmaui components instead
+8. **Use tmaui components** for UI elements (Button, Cell, Card, etc.) rather than native HTML elements
 
 ### When working with routes:
 

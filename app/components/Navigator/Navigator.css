@@ -5,9 +5,18 @@
 }
 
 .navigator__tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   display: flex;
   padding-bottom: 4px;
+  background: var(--tg-theme-bg-color, white);
+  border-top: 1px solid var(--tg-theme-section-separator-color, #e5e5e5);
+  z-index: 1000;
+  /* Exclude tabbar from view transitions */
+  view-transition-name: none;
 }
 
 .navigator__item {

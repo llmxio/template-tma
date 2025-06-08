@@ -20,11 +20,11 @@ import {
   ScrollRestoration,
 } from "react-router";
 
-import type { Route } from "./+types/root";
-import "./app.css";
 import { Navigator } from "./components/Navigator";
 import { main } from "./main";
 import { mockEnv } from "./mock";
+import type { Route } from "./+types/root";
+import "./app.css";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -49,19 +49,13 @@ export const links: Route.LinksFunction = () => [
 //   return { message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE };
 // };
 
-export async function clientLoader({
+export const clientLoader = async ({
   request,
   serverLoader,
   params,
-}: Route.ClientLoaderArgs) {
+}: Route.ClientLoaderArgs) => {
   try {
-    console.log("root.clientLoader()");
     await mockEnv();
-
-    // Check if we're in browser environment before accessing Telegram SDK
-    // if (typeof window === "undefined") {
-    //   return { lp: {} };
-    // }
 
     const launchParams = retrieveLaunchParams();
     const { tgWebAppPlatform: platform } = launchParams;
@@ -82,7 +76,7 @@ export async function clientLoader({
     console.error("root", error);
   }
   return { lp: {} };
-}
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   // Only access Telegram SDK on client side
