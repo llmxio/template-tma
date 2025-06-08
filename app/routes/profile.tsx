@@ -9,11 +9,11 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export async function loader({ context }: Route.LoaderArgs) {
+export const loader = async ({ context }: Route.LoaderArgs) => {
   return {
     message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE,
   };
-}
+};
 
 export const clientLoader = async ({
   request,

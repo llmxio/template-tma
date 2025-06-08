@@ -21,7 +21,7 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import "./app.css";
+import "./root.css";
 import { Navigator } from "./components/Navigator";
 import { main } from "./main";
 import { mockEnv } from "./mock";
@@ -55,13 +55,7 @@ export const clientLoader = async ({
   params,
 }: Route.ClientLoaderArgs) => {
   try {
-    console.log("root.clientLoader()");
     await mockEnv();
-
-    // Check if we're in browser environment before accessing Telegram SDK
-    // if (typeof window === "undefined") {
-    //   return { lp: {} };
-    // }
 
     const launchParams = retrieveLaunchParams();
     const { tgWebAppPlatform: platform } = launchParams;
@@ -89,18 +83,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
   let isDark = false;
   let platform: "ios" | "base" = "base";
 
-  if (typeof window !== "undefined") {
-    try {
-      const isDarkSignal = useSignal(isMiniAppDark);
-      isDark = isDarkSignal || false;
+  try {
+    const isDarkSignal = useSignal(isMiniAppDark);
+    isDark = isDarkSignal || false;
 
-      const launchParams = useLaunchParams();
-      platform = ["macos", "ios"].includes(launchParams.tgWebAppPlatform)
-        ? "ios"
-        : "base";
-    } catch (error) {
-      console.warn("Could not access Telegram SDK:", error);
-    }
+    const launchParams = useLaunchParams();
+    platform = ["macos", "ios"].includes(launchParams.tgWebAppPlatform)
+      ? "ios"
+      : "base";
+  } catch (error) {
+    console.warn("Could not access Telegram SDK:", error);
   }
 
   return (

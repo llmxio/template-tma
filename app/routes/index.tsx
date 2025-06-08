@@ -9,7 +9,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export async function loader({ context }: Route.LoaderArgs) {
+export const loader = async ({ context }: Route.LoaderArgs) => {
   try {
     return {
       message:
@@ -21,7 +21,7 @@ export async function loader({ context }: Route.LoaderArgs) {
       message: "Hello World",
     };
   }
-}
+};
 
 export const clientLoader = async ({
   serverLoader,
@@ -29,8 +29,6 @@ export const clientLoader = async ({
   try {
     const serverParams = await serverLoader();
     const launchParams = retrieveLaunchParams();
-
-    console.log("Launch params:", launchParams);
 
     return {
       ...launchParams,
