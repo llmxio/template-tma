@@ -1,1 +1,0 @@
-export { useSwipeNavigation } from "./useSwipeNavigation";
