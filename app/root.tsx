@@ -83,16 +83,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
   let isDark = false;
   let platform: "ios" | "base" = "base";
 
-  try {
-    const isDarkSignal = useSignal(isMiniAppDark);
-    isDark = isDarkSignal || false;
+  // Check if we're on the client side before using Telegram SDK hooks
+  if (typeof window !== "undefined") {
+    try {
+      const isDarkSignal = useSignal(isMiniAppDark);
+      isDark = isDarkSignal || false;
 
-    const launchParams = useLaunchParams();
-    platform = ["macos", "ios"].includes(launchParams.tgWebAppPlatform)
-      ? "ios"
-      : "base";
-  } catch (error) {
-    console.warn("Could not access Telegram SDK:", error);
+      const launchParams = useLaunchParams();
+      platform = ["macos", "ios"].includes(launchParams.tgWebAppPlatform)
+        ? "ios"
+        : "base";
+    } catch (error) {
+      console.warn("Could not access Telegram SDK:", error);
+    }
   }
 
   return (
