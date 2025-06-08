@@ -1,5 +1,4 @@
 import { Tabbar, Navigation } from "tmaui";
-
 import { useTonWallet } from "@tonconnect/ui-react";
 import {
   Icon28Music,

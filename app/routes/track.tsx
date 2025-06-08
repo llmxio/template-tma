@@ -1,29 +1,27 @@
 import type { Route } from "./+types/track";
 import { retrieveLaunchParams } from "@telegram-apps/sdk-react";
 
-export function meta({ params }: Route.MetaArgs) {
-  return [
-    { title: `${params.trackArtist} - ${params.trackTitle}` },
-    {
-      name: "description",
-      content: `Playing ${params.trackTitle} by ${params.trackArtist}`,
-    },
-  ];
-}
+export const meta = ({ params }: Route.MetaArgs) => [
+  { title: `${params.trackArtist} - ${params.trackTitle}` },
+  {
+    name: "description",
+    content: `Playing ${params.trackTitle} by ${params.trackArtist}`,
+  },
+];
 
-export async function loader({ context, params }: Route.LoaderArgs) {
+export const loader = async ({ context, params }: Route.LoaderArgs) => {
   return {
     message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE,
     trackArtist: params.trackArtist,
     trackTitle: params.trackTitle,
   };
-}
+};
 
-export async function clientLoader({
+export const clientLoader = async ({
   request,
   serverLoader,
   params,
-}: Route.ClientLoaderArgs) {
+}: Route.ClientLoaderArgs) => {
   try {
     const serverParams = await serverLoader();
     const launchParams = retrieveLaunchParams();
@@ -41,7 +39,7 @@ export async function clientLoader({
       trackTitle: params.trackTitle,
     };
   }
-}
+};
 
 export default function TrackRoute({ loaderData }: Route.ComponentProps) {
   return (
