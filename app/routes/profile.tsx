@@ -2,10 +2,12 @@ import type { Route } from "./+types/profile";
 import { Profile } from "@/pages/Profile";
 import { retrieveLaunchParams } from "@telegram-apps/sdk-react";
 
-export const meta = ({}: Route.MetaArgs) => [
-  { title: "Profile - Hot Shop Radio" },
-  { name: "description", content: "Profile - Hot Shop Radio" },
-];
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "TMA Template - Wallet" },
+    { name: "description", content: "TMA Template - Wallet" },
+  ];
+}
 
 export const loader = async ({ context }: Route.LoaderArgs) => {
   return {

@@ -95,7 +95,9 @@ This is a **Telegram Mini App (TMA)** built with **React Router v7**, deployed o
 - Tailwind CSS v4 with modern configuration
 - CSS custom properties for Telegram theme integration
 - Responsive design considerations for mobile Telegram interface
-- Use `tmaui` library for Telegram-specific UI components
+- **Use `tmaui` library components for all UI elements** (buttons, inputs, cards, etc.)
+- **Avoid HTML tags like `<button>`, `<input>`, `<form>`, `<select>`, etc.**
+- **Only use `<div>` and `<span>` for layout and text containers**
 
 ## Development Workflow
 
@@ -112,7 +114,7 @@ This is a **Telegram Mini App (TMA)** built with **React Router v7**, deployed o
 - `@telegram-apps/sdk-react` - Telegram SDK
 - `@tonconnect/ui-react` - TON Connect integration
 - `react-swipeable` - Touch gesture support
-- `tmaui` - Telegram Mini App UI components
+- `tmaui` - Telegram Mini App UI components (primary UI library)
 
 ## Coding Guidelines
 
@@ -121,11 +123,11 @@ This is a **Telegram Mini App (TMA)** built with **React Router v7**, deployed o
 1. Use functional components with hooks
 2. Implement proper TypeScript typing
 3. Consider Telegram Mini App constraints (mobile-first, limited viewport)
-4. Use Tailwind classes for styling
-5. Handle back button navigation appropriately
-6. Consider theme switching (light/dark mode)
-7. **Avoid HTML tags except `div` and `span`** - use tmaui components instead
-8. **Use tmaui components** for UI elements (Button, Cell, Card, etc.) rather than native HTML elements
+4. **Use `tmaui` components instead of HTML tags** (avoid `<button>`, `<input>`, etc.)
+5. **Only use `<div>` and `<span>` for layout/containers when necessary**
+6. Use Tailwind classes for styling
+7. Handle back button navigation appropriately
+8. Consider theme switching (light/dark mode)
 
 ### When working with routes:
 

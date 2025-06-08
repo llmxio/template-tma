@@ -2,10 +2,12 @@ import type { Route } from "./+types/index";
 import { Index } from "@/pages/Index";
 import { retrieveLaunchParams } from "@telegram-apps/sdk-react";
 
-export const meta = ({}: Route.MetaArgs) => [
-  { title: "TMA Template" },
-  { name: "description", content: "Welcome to Telegram Mini App Template!" },
-];
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "TMA Template - Index" },
+    { name: "description", content: "Welcome to Telegram Mini App Template!" },
+  ];
+}
 
 export const loader = async ({ context }: Route.LoaderArgs) => {
   try {
@@ -27,8 +29,6 @@ export const clientLoader = async ({
   try {
     const serverParams = await serverLoader();
     const launchParams = retrieveLaunchParams();
-
-    console.log("Launch params:", launchParams);
 
     return {
       ...launchParams,
