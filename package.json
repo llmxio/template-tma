@@ -22,7 +22,7 @@
     "tmaui": "^2.2.3"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.5.0",
+    "@cloudflare/vite-plugin": "^1.5.1",
     "@react-router/dev": "^7.6.2",
     "@tailwindcss/vite": "^4.1.8",
     "@types/node": "^24.0.1",
