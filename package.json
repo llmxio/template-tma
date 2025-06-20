@@ -12,7 +12,7 @@
     "typecheck": "npm run typegen && tsc -b"
   },
   "dependencies": {
-    "@telegram-apps/sdk-react": "^3.3.1",
+    "@telegram-apps/sdk-react": "^3.3.2",
     "@tonconnect/ui-react": "^2.1.0",
     "@vkontakte/icons": "^3.10.0",
     "isbot": "^5.1.28",
