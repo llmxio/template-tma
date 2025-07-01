@@ -1,5 +1,7 @@
 # Telegram Mini App - Cloudflare Worker Template
 
+[![Test](https://github.com/llmxio/template-tma/actions/workflows/test.yml/badge.svg)](https://github.com/llmxio/template-tma/actions/workflows/test.yml) [![Dependabot Updates](https://github.com/llmxio/template-tma/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/llmxio/template-tma/actions/workflows/dependabot/dependabot-updates)
+
 A modern Telegram Mini App built with React Router v7 and deployed on Cloudflare Workers. TON Blockchain ready with integrated wallet connections and cryptocurrency interactions.
 
 🤖 **Try the live example**: [@tma_cfbot](https://t.me/tma_cfbot)

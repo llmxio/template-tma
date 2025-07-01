@@ -19,16 +19,60 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - uses: actions/setup-node@v4
       with:
         node-version: 22
         cache: 'npm'
 
-    - name: Install modules
-      run: npm install
+    # Cache node_modules separately for faster installs
+    - name: Cache node_modules
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
 
-    - name: Run Typecheck
+    # Cache TypeScript compilation
+    - name: Cache TypeScript build info
+      uses: actions/cache@v4
+      with:
+        path: |
+          tsconfig.tsbuildinfo
+          .react-router/types
+        key: ${{ runner.os }}-typescript-${{ hashFiles('tsconfig.*.json', 'app/**/*.ts', 'app/**/*.tsx') }}
+        restore-keys: |
+          ${{ runner.os }}-typescript-
+
+    # Cache Vite build output for faster subsequent builds
+    - name: Cache Vite build
+      uses: actions/cache@v4
+      with:
+        path: |
+          node_modules/.vite
+          build
+        key: ${{ runner.os }}-vite-${{ hashFiles('vite.config.ts', 'app/**/*', 'workers/**/*') }}
+        restore-keys: |
+          ${{ runner.os }}-vite-
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Generate types
+      run: npm run typegen
+
+    - name: Run type checking
       run: npm run typecheck
 
-    - name: Run Build
+    - name: Build application
       run: npm run build
+
+    # Optional: Validate the build output
+    - name: Check build output
+      run: |
+        if [ ! -d "build/client" ] || [ ! -d "build/server" ]; then
+          echo "Build output missing required directories"
+          exit 1
+        fi
+        echo "Build completed successfully"
