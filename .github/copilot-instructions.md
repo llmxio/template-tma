@@ -81,3 +81,111 @@ const [block, elem] = bem("component-name");
 - **TON Blockchain**: Wallet connection via `@tonconnect/ui-react`
 - **Cloudflare Workers**: SSR runtime with environment access
 - **Build pipeline**: Vite + React Router + Cloudflare plugin coordination
+
+## Essential Code Patterns
+
+### Route Component Structure
+```tsx
+import type { Route } from "./+types/component-name";
+
+export default function ComponentName({ loaderData }: Route.ComponentProps) {
+  // Use tmaui components, avoid HTML elements
+  return (
+    <AppRoot>
+      {/* Component content */}
+    </AppRoot>
+  );
+}
+```
+
+### Telegram Back Button Handling
+```tsx
+import { hideBackButton, showBackButton, onBackButtonClick } from "@telegram-apps/sdk-react";
+
+// In RootNoBack layout: hideBackButton()
+// In RootWithBack layout: showBackButton() + onBackButtonClick handler
+```
+
+### Component Development Guidelines
+1. **Always use tmaui components**: `Button`, `Cell`, `Section`, `Tabbar`, etc.
+2. **Never use HTML form elements**: `<button>`, `<input>`, `<form>`, `<select>`
+3. **Use VK Icons**: `Icon20Stars`, `Icon28User` with filled/outline variants
+4. **Apply BEM methodology**: Use `bem()` helper for CSS classes
+5. **Handle theme changes**: CSS variables automatically sync with Telegram theme
+
+### Mobile-First Considerations
+- Network-accessible dev server (`host: true`) for device testing
+- Platform-specific behavior handling (especially macOS quirks)
+- Responsive design within Telegram's viewport constraints
+- Performance optimization for mobile devices
+
+## Workflow Integration for AI Agents
+
+### Before Development
+1. Run `npm run typegen` to generate types
+2. Check if new dependencies require installation
+3. Verify build works: `npm run build`
+
+### During Development
+1. Use `npm run dev` for development server
+2. Test on mobile devices using network access
+3. Validate types with `npm run typecheck`
+4. Follow existing component patterns in `app/components/`
+
+### Component Creation Checklist
+- [ ] Use tmaui components only (no HTML elements)
+- [ ] Apply proper TypeScript typing with Route types
+- [ ] Use `@/` path imports with vite-tsconfig-paths
+- [ ] Implement BEM CSS methodology with `bem()` helper
+- [ ] Handle Telegram theme integration
+- [ ] Consider mobile viewport and performance
+
+### Data Loading Patterns
+```tsx
+// Server loader with Cloudflare environment access
+export const loader = async ({ context }: Route.LoaderArgs) => {
+  return {
+    message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE,
+  };
+};
+
+// Client loader with Telegram launch parameters
+export const clientLoader = async ({ serverLoader }: Route.ClientLoaderArgs) => {
+  const serverData = await serverLoader();
+  const launchParams = retrieveLaunchParams();
+  return { ...serverData, ...launchParams };
+};
+```
+
+### Meta Data & SEO
+```tsx
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "TMA Template - Page Title" },
+    { name: "description", content: "Page description for Telegram Mini App" },
+  ];
+}
+```
+
+## Common Gotchas for AI Agents
+
+### Telegram SDK Availability
+- Always check if Telegram features are available before using them
+- Use `.ifAvailable()` methods for mounting components
+- Handle development vs production environment differences
+
+### Platform-Specific Behavior  
+- macOS Telegram client has known bugs requiring special mocking
+- iOS vs Android platform detection affects styling
+- Development environment automatically mocks Telegram environment
+
+### Type Generation Dependencies
+- Run `npm run typegen` before development to generate route types
+- Cloudflare types are auto-generated in `worker-configuration.d.ts`
+- React Router types are auto-generated in `.react-router/types/`
+
+### Performance Considerations
+- Bundle size matters for mobile Telegram clients
+- Use dynamic imports for code splitting when appropriate
+- SSR is enabled for faster initial load times
+- Consider edge deployment constraints for data fetching
